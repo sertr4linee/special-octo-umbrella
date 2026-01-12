@@ -1,0 +1,47 @@
+# Polymarket BTC Bot Configuration
+
+polymarket:
+  host: "https://clob.polymarket.com"
+  gamma_host: "https://gamma-api.polymarket.com"
+  chain_id: 137  # Polygon mainnet
+
+binance:
+  base_url: "https://api.binance.com"
+  symbol: "BTCUSDT"
+
+trading:
+  mode: "paper"  # paper | live
+  trade_amount_usd: 10.0
+  interval_minutes: 15
+  max_daily_trades: 96
+  min_score_threshold: 0.6
+
+indicators:
+  # RSI
+  rsi_period: 14
+  rsi_overbought: 70.0
+  rsi_oversold: 30.0
+
+  # MACD
+  macd_fast: 12
+  macd_slow: 26
+  macd_signal: 9
+
+  # EMA Crossover
+  ema_short: 9
+  ema_long: 21
+
+  # Bollinger Bands
+  bb_period: 20
+  bb_std_dev: 2.0
+
+# Indicator weights for scoring (must sum to 1.0)
+indicator_weights:
+  rsi: 0.25
+  macd: 0.30
+  ema_crossover: 0.25
+  bollinger: 0.20
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s | %(levelname)-8s | %(name)s | %(message)s"

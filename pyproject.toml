@@ -1,0 +1,70 @@
+[project]
+name = "polymarket-btc-bot"
+version = "0.1.0"
+description = "Automated Bitcoin prediction trading bot for Polymarket"
+requires-python = ">=3.11"
+readme = "README.md"
+
+dependencies = [
+    # Polymarket SDK
+    "py-clob-client>=0.17.0",
+
+    # Binance data fetching
+    "python-binance>=1.0.19",
+
+    # Technical analysis
+    "pandas>=2.0.0",
+    "pandas-ta>=0.3.14b",
+    "numpy>=1.24.0",
+
+    # HTTP client
+    "httpx>=0.25.0",
+
+    # Configuration
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0",
+
+    # Scheduling
+    "apscheduler>=3.10.0",
+
+    # Web UI
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "jinja2>=3.1.0",
+    "python-multipart>=0.0.6",
+    "websockets>=12.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.1.0",
+    "mypy>=1.5.0",
+]
+
+[project.scripts]
+btc-bot = "btc_bot.main:main"
+btc-bot-ui = "btc_bot.web.app:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "W"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
